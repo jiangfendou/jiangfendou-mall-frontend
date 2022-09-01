@@ -31,10 +31,6 @@
       <el-table-column prop="name" header-align="center" align="center" label="品牌名"></el-table-column>
       <el-table-column prop="logo" header-align="center" align="center" label="品牌logo地址">
         <template slot-scope="scope">
-          <!-- <el-image
-              style="width: 100px; height: 80px"
-              :src="scope.row.logo"
-          fit="fill"></el-image>-->
           <img :src="scope.row.logo" style="width: 100px; height: 80px" />
         </template>
       </el-table-column>
@@ -106,7 +102,7 @@
 
 <script>
 import AddOrUpdate from "./brand-add-or-update";
-import CategoryCascader from "../../common/category-cascader";
+import CategoryCascader from "../common/category-cascader";
 export default {
   data() {
     return {
@@ -168,6 +164,7 @@ export default {
           brandId: this.brandId
         })
       }).then(({ data }) => {
+        console.log("data:", data);
         this.cateRelationTableData = data.data;
       });
     },
@@ -202,10 +199,15 @@ export default {
         method: "post",
         data: this.$http.adornData({ brandId, showStatus }, false)
       }).then(({ data }) => {
-        this.$message({
+        
+        if (data && data.code === 0) {
+          this.$message({
           type: "success",
           message: "状态更新成功"
-        });
+          });
+        } else {
+          this.$message.error(data.msg);
+        }
       });
     },
     // 每页数

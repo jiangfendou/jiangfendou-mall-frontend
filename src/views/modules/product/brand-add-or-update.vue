@@ -58,7 +58,7 @@ export default {
         descript: "",
         showStatus: 1,
         firstLetter: "",
-        sort: 0
+        sort: ""
       },
       dataRule: {
         name: [{ required: true, message: "品牌名不能为空", trigger: "blur" }],
