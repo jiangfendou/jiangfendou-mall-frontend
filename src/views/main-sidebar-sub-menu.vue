@@ -45,7 +45,10 @@
     methods: {
       // 通过menuId与动态(菜单)路由进行匹配跳转至指定路由
       gotoRouteHandle (menu) {
+        console.log(this.dynamicMenuRoutes);
         var route = this.dynamicMenuRoutes.filter(item => item.meta.menuId === menu.menuId)
+        console.log(route);
+        console.log("route.length", route[0].name);
         if (route.length >= 1) {
           this.$router.push({ name: route[0].name })
         }

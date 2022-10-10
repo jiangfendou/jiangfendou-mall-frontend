@@ -3,7 +3,8 @@
     :props="defaultProps" 
     node-key="catId"
     ref="menuTree"
-    @node-click="nodeClick">
+    @node-click="nodeClick"
+    v-loading="categoryLoading">
   </el-tree>
 </template>
 
@@ -17,6 +18,7 @@ export default {
   data() {
     //这里存放数据
     return {
+      categoryLoading: true,
       menus: [],
       expandedKey: [],
       defaultProps: {
@@ -37,6 +39,7 @@ export default {
       }).then(({data}) => {
           console.log("成功获取菜单数据，，，", data);
           this.menus = data.data;
+          this.categoryLoading = false
       })
     },
     nodeClick(data, node, component) {

@@ -7,7 +7,8 @@
     :default-expanded-keys="expandedKey"
     draggable
     :allow-drop = "allowDrop"
-    @node-drop="handleDrop">
+    @node-drop="handleDrop"
+    v-loading="categoryLoading">
       <span class="custom-tree-node" slot-scope="{ node, data }">
           <span>{{ node.label }}</span>
           <span>
@@ -64,6 +65,7 @@ export default {
   props: {},
   data() {
     return {
+      categoryLoading: true,
       updateNodes: [],
       maxLevel: 0,
       title:"",
@@ -123,6 +125,7 @@ export default {
           }).then(({data}) => {
               console.log("成功获取菜单数据，，，", data);
               this.menus = data.data;
+              this.categoryLoading = false
           })
       },
       append(data) {

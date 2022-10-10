@@ -91,8 +91,8 @@
 </template>
 
 <script>
-// import CategoryCascader from "../common/category-cascader";
-// import BrandSelect from "../common/brand-select";
+import CategoryCascader from "../common/category-cascader";
+import BrandSelect from "../common/brand-select";
 export default {
   data() {
     return {
